@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .board {
+    width: 360px;
+    height: 360px;
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .cell {
+    flex: 0 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .cell:nth-child(3n+2) { 
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+  }
+  
+  .cell:nth-child(n+4):nth-child(-n+6) {
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+  }
+  
+  .cell span {
+    text-transform: uppercase;
+    font-family: monospace;
+    font-size: 3rem;
+  }
+
+
+  //this is the code from a previous workshop in class where we designed a tic-tac-toe grid using nth child and flexbox. I used this as a reference to create the grid for my game.
