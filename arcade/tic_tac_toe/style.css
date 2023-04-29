@@ -1,44 +1,96 @@
-* {
+  * {
     box-sizing: border-box;
-  }
+  } 
   
   body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    background-color: #FDFD96;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
     margin: 0;
-    background-color: #f5f5f5;
-    
-  }
-  
-  /* #gameBoard {
-    width: 360px;
-    height: 360px;
-
+    padding: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-
-  } */
-
-  #grid {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    width: 225px;
+    flex-direction: column;
+    height: 100vh;
+    
+  } 
+  
+  #gameBoard {
+    width: 380px;
+    height: 380px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #CCCCFF;
+    border: 2px solid black;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  
   }
   
   .cell{
-    width: 75px;
-    height: 75px;
-    border: 2px solid;
-    box-shadow: 0 0 0 2px;
-    line-height: 75px;
-    font-size: 50px;
+    width: 120px;
+    height: 120px;
+    background-color: white;
+    border: 2px solid black;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-weight: bold;
     cursor: pointer;
-    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+} 
+
+.o {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1083533/circle.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: transparent;
+}
+
+.x {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1083533/cross.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: transparent;
+}
+
+.cell:hover {
+    background-color: #77DD77;
+}
+
+#newGame {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: #CCCCFF;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#player1 {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid black;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: #CCCCFF;
 }
 
 
-  /* This is the code from a previous workshop in class where we designed a tic-tac-toe grid using nth child and flexbox. I used this as a reference to create the grid for my game. */
+
