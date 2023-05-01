@@ -49,23 +49,42 @@
 } 
 
 .o {
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1083533/circle.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    color: transparent;
+   height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 15px solid #FF6961;
+    box-sizing: border-box;
 }
 
 .x {
-    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1083533/cross.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    color: transparent;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  transform: rotate(45deg);
+}
+
+.x:before, .x:after {
+  content: "";
+  position: absolute;
+  background-color: #77DD77;
+}
+
+.x:before {
+  left: 50%;
+  width: 30%;
+  margin-left: -15%;
+  height: 100%;
+}
+
+.x:after {
+  top: 50%;
+  height: 30%;
+  margin-top: -15%;
+  width: 100%;
 }
 
 .cell:hover {
-    background-color: #77DD77;
+    background-color: #d4fafa;
 }
 
 #newGame {
@@ -92,5 +111,26 @@
     background-color: #CCCCFF;
 }
 
+#p1name {
+  width: 200px;
+  height:25px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: auto;
+  background-color: #CCCCFF;
+  text-align: center;
+}
 
-
+#p2name {
+  width: 200px;
+  height:25px;
+  border-radius: 10px;
+  border: 2px solid black;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: auto;
+  background-color: #CCCCFF;
+  text-align: center;
+}

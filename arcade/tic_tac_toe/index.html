@@ -9,10 +9,10 @@
 </head>
 <body> 
     <h1>Tic-Tac-Toe</h1>
-    <h2>Player 1: </h2>
-    <h2>Player 2: </h2>
+    <h2>Player 1: <input id=p1name type="text"></h2>
+    <h2>Player 2: <input id=p2name type="text"></h2>
     <h2>Player 1, choose your symbol: </h2>
-<select name="player1" id="player1">
+<select name="p1symbol" id="p1symbol">
     <option value="X">X</option>
     <option value="O">O</option>
 </select>
@@ -28,7 +28,7 @@
             <div index="7" class="cell"></div>
             <div index="8" class="cell"></div>
     </div> 
-    <div id="status"></div>
+    <h2 id="status"></h2>
     <button id="newGame">New Game</button>
     <script src="script.js"></script>
 </body>
