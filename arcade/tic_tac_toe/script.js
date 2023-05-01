@@ -24,9 +24,9 @@ let symbol = '';
 gameStatus.textContent = "Let's play! Enter your names!";
 
 gameStart();
+newGame();
 
 function gameStart() {
-    // Initialize options array
     gameBoardCellsArray.forEach((cell, index) => {
       if (cell.children.length > 0) {
         options[index] = cell.children[0].classList[0];
@@ -71,8 +71,6 @@ function addSymbol(e) {
 }
 
 function checkWin() {
-    console.log(options); // check the values of the options array
-    console.log(winConditions); // check the values of the winConditions array
     for (let i = 0; i < winConditions.length; i++) {
       const [a, b, c] = winConditions[i];
       if (options[a] && options[a] === options[b] && options[a] === options[c]) {
@@ -94,7 +92,6 @@ function checkWin() {
     return false;
   }
   
-
 function newGame() {
   gameBoardCellsArray.forEach(cell => {
     cell.innerHTML = '';
