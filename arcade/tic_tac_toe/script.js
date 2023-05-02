@@ -36,12 +36,11 @@ function gameStart() {
     });
     newGameBtn.addEventListener('click', gameStart);
     options = ["", "", "", "", "", "", "", "", ""];
-    pXname.addEventListener('change', nameValues);
-    pOname.addEventListener('change', nameValues);
+    pXname && pOname.addEventListener('change', nameValues);
     pX = pXname.value;
     pO = pOname.value;
     symbol = 'x';
-
+    nameValues();
   }
   
 function nameValues() {
