@@ -21,7 +21,7 @@ const pOname = document.querySelector('#p2name');
 let pX = '';
 let pO = '';
 let symbol = '';
-gameStatus.textContent = "Let's play! Enter your names!";
+gameStatus.textContent = "Let's play! X goes first!";
 
 gameStart();
 
@@ -40,6 +40,7 @@ function gameStart() {
     pX = pXname.value;
     pO = pOname.value;
     symbol = 'x';
+    gameStatus.textContent = "Let's play! X goes first!";
     nameValues();
   }
   
@@ -95,17 +96,3 @@ function checkWin() {
     }
     return false;
   }
-  
-function newGame() {
-  gameBoardCellsArray.forEach(cell => {
-    cell.innerHTML = '';
-    cell.addEventListener('click', addSymbol);
-    cell.dataset.index = gameBoardCellsArray.indexOf(cell);
-  });
-  options = ["", "", "", "", "", "", "", "", ""];
-  gameStatus.textContent = "Let's play! Enter your names!";
-  symbol = '';
-  pXname.value = '';
-  pOname.value = '';
-  gameStart();
-}
