@@ -8,24 +8,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body> 
-    <h1>Tic-Tac-Toe</h1>
-    <h2>Player X: <input id=p1name type="text"></h2>
-    <h2>Player O: <input id=p2name type="text"></h2>
+    <h1 id="title">Tic-Tac-Toe</h1>
+
+    <button id="gameSettingsButton">Game Settings</button>
+
+    <div id="gameSettings">
+        <div id="gameSettingsContent">
+            <label for="gameMode">Select Game Mode:</label>
+                <select id="gameMode">
+                    <option value="1">1 Player</option>
+                    <option value="2">2 Player</option>
+                </select>
+
+            <label for="difficultyLevel">Select Difficulty:</label>
+                <select id="difficultyLevel">
+                    <option value="easy">Easy</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+        
+            <h2>Player X: <input id=p1name type="text"></h2>
+            <h2>Player O: <input id=p2name type="text"></h2>
+            <button id="startGame">Start Game</button>
+        </div>
+    </div>
+
     <h2 id="status"></h2>
     
     <div id="gameBoard">
-            <div index="0" class="cell"></div>
-            <div index="1" class="cell"></div>
-            <div index="2" class="cell"></div>
-            <div index="3" class="cell"></div>
-            <div index="4" class="cell"></div>
-            <div index="5" class="cell"></div>
-            <div index="6" class="cell"></div>
-            <div index="7" class="cell"></div>
-            <div index="8" class="cell"></div>
-    </div> 
-    
-    <button id="newGame">New Game</button>
+        <div index="0" class="cell"></div>
+        <div index="1" class="cell"></div>
+        <div index="2" class="cell"></div>
+        <div index="3" class="cell"></div>
+        <div index="4" class="cell"></div>
+        <div index="5" class="cell"></div>
+        <div index="6" class="cell"></div>
+        <div index="7" class="cell"></div>
+        <div index="8" class="cell"></div>
+    </div>
+
+    <div id="scoreBoard">
+        <div id="p1score">
+            <h2 id="p1Tally"></h2>
+        </div>
+        <div id="p2score">
+            <h2 id="p2Tally"></h2>
+        </div>
+    </div>
+
+    <div id="resetButtons">
+        <button id="newScore">Reset Score</button>
+        <button id="newGame">New Game</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

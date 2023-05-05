@@ -94,68 +94,59 @@ function nameValues() {
 }
 
 function addSymbol(e) {
-  let columnIndex = e.target.dataset.index % 7;
-  let rowIndex = 0;
-  while (rowIndex < 6 && options[columnIndex + rowIndex * 7] === "") {
-    rowIndex++;
-  }
-  if (rowIndex > 0 && options[columnIndex + (rowIndex - 1) * 7] === "") {
-    rowIndex--;
-    options[columnIndex + rowIndex * 7] = symbol;
-    e.target.innerHTML = symbol;
-    if (symbol === 'x') {
-    e.target.classList.add('x');
-    symbol = 'o';
-    gameStatus.textContent = ${pO}'s turn!;
-    } else {
-    e.target.classList.add('o');
-    symbol = 'x';
-    gameStatus.textContent = ${pX}'s turn!;
-    }
-    checkWin();
-    }
-    }
-    
-    function checkWin() {
-    for (let i = 0; i < winConditions.length; i++) {
-    const [a, b, c, d] = winConditions[i];
-    if (options[a] && options[a] === options[b] && options[b] === options[c] && options[c] === options[d]) {
-    gameStatus.textContent = ${options[a].toUpperCase()} wins!;
-    gameBoardCellsArray.forEach(cell => {
-    cell.removeEventListener('click', addSymbol);
-    });
+  let columnIndex = parseInt(e.target.dataset.index)
+  let rowIndex = getEmptyRowIndex(columnIndex);
+
+  if (rowIndex < 0) {
     return;
+  }
+
+  const newSymbol = document.createElement('div');
+  newSymbol.classList.add(symbol);
+  e.target.append(newSymbol);
+
+  options[rowIndex * 4 + columnIndex] = newSymbol.classList[0];
+
+  if (symbol === 'x') {
+    symbol = 'o';
+    gameStatus.textContent = ${green}'s turn!;
+  } else {
+    symbol = 'x';
+    gameStatus.textContent = ${red}'s turn!;
+  }
+
+  e.target.removeEventListener('click', addSymbol);
+  checkWin();
+}
+
+function getEmptyRowIndex(columnIndex) {
+  for (let i = 5; i >= 0; i--) {
+    if (options[i * 4 + columnIndex] === '') {
+      return i;
     }
+  }
+  return -1;
+}
+
+function checkWin() {
+  for (let i = 0; i < winConditions.length; i++) {
+    const [a, b, c, d] = winConditions[i];
+      if (options[a] && options[a] === options[b] && options[a] === options[c] && options[a] === options[d]) {
+        const winner = options[a] === 'x' ? pX : pO;
+        gameStatus.textContent = ${winner} wins!;
+        gameBoardCellsArray.forEach(cell => {
+        cell.removeEventListener('click', addSymbol);
+      });
+    return true;
+      }
+  }
+    if (options.every(option => option !== '')) {
+      gameStatus.textContent = "It's a tie!";
+      gameBoardCellsArray.forEach(cell => {
+      cell.removeEventListener('click', addSymbol);
+      });
+    return true;
     }
-    if (!options.includes("")) {
-    gameStatus.textContent = "It's a draw!";
-    }
-    }
+    return false;
+}
 
-
-
-
-
-
-// function checkWin() {
-//     for (let i = 0; i < winConditions.length; i++) {
-//       const [a, b, c] = winConditions[i];
-//       if (options[a] && options[a] === options[b] && options[a] === options[c]) {
-//         const winner = options[a] === 'x' ? pX : pO;
-//         gameStatus.textContent = `${winner} wins!`;
-//         gameBoardCellsArray.forEach(cell => {
-//           cell.removeEventListener('click', addSymbol);
-//         });
-//         return true;
-//       }
-//     }
-//     if (options.every(option => option !== '')) {
-//       gameStatus.textContent = "It's a tie!";
-//       gameBoardCellsArray.forEach(cell => {
-//         cell.removeEventListener('click', addSymbol);
-//       });
-//       return true;
-//     }
-//     return false;
-//   }
-  
