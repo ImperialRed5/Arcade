@@ -34,7 +34,6 @@ gameStatus.textContent = "Let's play! X goes first!";
 gameSettingsContent.style.display = 'none';
 
 gameSettingsBtn.addEventListener('click', () => {
-  console.log("booger")
   gameSettings.style.display = "block";
   gameSettingsContent.style.display = 'flex';
 });
@@ -69,15 +68,28 @@ function gameStart() {
     keepScore();
   }
   
-function soloGame() {
-  if (gameMode.value === "1 Player") {
-    pOname.value = 'Computer';
-    pOname.disabled = true;
-  } else if (gameMode.value === "2 Player") {
-    pOname.value = '';
-    pOname.disabled = false;
+  function soloGame() {
+    if (gameMode.value === "1 Player") {
+      pOname.value = 'Computer';
+      pOname.disabled = true;
+      
+      // get selected difficulty level
+      const difficulty = document.querySelector('#difficulty').value;
+      
+      // set computer symbol and difficulty level
+      if (difficulty === "easy") {
+        computerSymbol = 'o';
+        computerDifficulty = 'easy';
+      } else if (difficulty === "hard") {
+        computerSymbol = 'o';
+        computerDifficulty = 'hard';
+      }
+    } else if (gameMode.value === "2 Player") {
+      pOname.value = '';
+      pOname.disabled = false;
+    }
   }
-}
+  
 
 function nameValues() {
     if (pX === '') {
@@ -99,16 +111,23 @@ function computerMove() {
   } else {
     computerMove();
   }
-
-function keepScore() {
-  if (checkWin() && gameStatus.textContent === `${pX} wins!`) {
-    pXscore++;
-    pXscoreboard.textContent = pXscore;
-  } else if (checkWin() && gameStatus.textContent === `${pO} wins!`) {
-    pOscore++;
-    pOscoreboard.textContent = pOscore;
-  }
 }
+
+  function keepScore() { 
+    if (checkWin()) {
+       const winner = options[winConditions.find(([a, b, c]) => 
+       options[a] && options[a] === options[b] && options[a] === options[c] )]?.[0]; 
+      if (winner === 'x') { pXscore++; 
+        pXscoreboard.textContent = pXscore; gameStatus.textContent = `${pXname.value} wins!`; 
+      } else if (winner === 'o') {
+         pOscore++; pOscoreboard.textContent = pOscore; gameStatus.textContent = `${pOname.value} wins!`;
+         } else { gameStatus.textContent = "It's a tie!"; 
+        } 
+        gameBoardCellsArray.forEach(cell => { 
+          cell.removeEventListener('click', addSymbol); 
+        }); 
+      } 
+    }
 
 function addSymbol(e) {
   gameStatus.textContent = `${pX}'s turn!`;
@@ -152,4 +171,7 @@ function checkWin() {
       return true;
     }
     return false;
+    keepScore();
   }
+
+
