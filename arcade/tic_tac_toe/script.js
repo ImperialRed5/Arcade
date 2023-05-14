@@ -105,51 +105,58 @@ function nameValues() {
 }
 
 function computerMove() {
-  const randomCell = Math.floor(Math.random() * 9);
-  if (options[randomCell] === '') {
-    gameBoardCellsArray[randomCell].click();
-  } else {
-    computerMove();
-  }
-}
-
-  function keepScore() { 
-    if (checkWin()) {
-       const winner = options[winConditions.find(([a, b, c]) => 
-       options[a] && options[a] === options[b] && options[a] === options[c] )]?.[0]; 
-      if (winner === 'x') { pXscore++; 
-        pXscoreboard.textContent = pXscore; gameStatus.textContent = `${pXname.value} wins!`; 
-      } else if (winner === 'o') {
-         pOscore++; pOscoreboard.textContent = pOscore; gameStatus.textContent = `${pOname.value} wins!`;
-         } else { gameStatus.textContent = "It's a tie!"; 
-        } 
-        gameBoardCellsArray.forEach(cell => { 
-          cell.removeEventListener('click', addSymbol); 
-        }); 
-      } 
+    if (computerDifficulty === 'easy') {
+      easyComputerMove();
+    } else if (computerDifficulty === 'hard') {
+      hardComputerMove();
     }
+  }
+
+function easyComputerMove() {
+    const randomCell = Math.floor(Math.random() * 9);
+    if (options[randomCell] === '') {
+      gameBoardCellsArray[randomCell].click();
+    } else {
+      easyComputerMove();
+    }
+  }
+
+function hardComputerMove() {
+    const randomCell = Math.floor(Math.random() * 9);
+    if (options[randomCell] === '') {
+      gameBoardCellsArray[randomCell].click();
+    } else {
+      hardComputerMove();
+    }
+  }
+
+  function keepScore() {
+    if (gameStatus.textContent === `${pX} wins!`) {
+      pXscore++;
+      pXscoreboard.textContent = pXscore;
+    } else if (gameStatus.textContent === `${pO} wins!`) {
+      pOscore++;
+      pOscoreboard.textContent = pOscore;
+    }
+  }
 
 function addSymbol(e) {
-  gameStatus.textContent = `${pX}'s turn!`;
-  const newSymbol = document.createElement('div');
-  newSymbol.classList.add(symbol);
-  e.target.append(newSymbol);
-
-  if (gameMode.value === "1 Player" && symbol === 'x') {
-    computerMove();
+    if (e.target.innerHTML === '') {
+      e.target.innerHTML = symbol;
+      options[e.target.dataset.index] = symbol;
+      if (checkWin()) return;
+      if (symbol === 'x') {
+        symbol = 'o';
+        gameStatus.textContent = `${pO}'s turn!`;
+        if (gameMode.value === "1 Player") {
+          computerMove();
+        }
+      } else {
+        symbol = 'x';
+        gameStatus.textContent = `${pX}'s turn!`;
+      }
+    }
   }
-
-  if (symbol === 'x') {
-    symbol = 'o';
-    gameStatus.textContent = `${pO}'s turn!`;
-  } else {
-    symbol = 'x';
-  }
-
-  e.target.removeEventListener('click', addSymbol);
-  options[e.target.dataset.index] = newSymbol.classList[0];
-  checkWin();
-}
 
 function checkWin() {
     for (let i = 0; i < winConditions.length; i++) {

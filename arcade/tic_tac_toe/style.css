@@ -232,6 +232,18 @@
   margin-bottom: auto;
 }
 
+#p1Tally {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: auto;
+}
+
+#p2Tally {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: auto;
+}
+
 #p2score {
   font-size: 20px;
   font-weight: bold;
